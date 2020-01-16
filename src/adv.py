@@ -1,6 +1,7 @@
-from room import Room
+from src.room import Room
 
 # Declare all the rooms
+from src.player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -38,6 +39,17 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+print()
+print("********* WELCOME TO YOUR PRINCESS ADVENTURE GAME *********")
+p_name = input("To get started, give your princess a name >>> ")
+player = Player(p_name, room["outside"])
+print(f"Make sure to look around, you may quit the game at any time by typing 'Q' and Good Luck {player.name}!")
+print()
+print(f"{player.name} is currently {player.current_room.name}. {player.current_room.description}")
+print(f"Available items thrown across the ground:")
+for i in room["outside"].items:
+    print(f"\t{i}")
+
 
 # Write a loop that:
 #
@@ -49,3 +61,26 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+instructional_text = """
+******************** Available Move Options ******************
+**** { n } North | { s } South |  { w } West | { e } East ****
+************** Enter [Q] to Exit the Adventure ***************
+"""
+
+print(instructional_text)
+play_input = ""
+while play_input != "Q":
+    play_input = input("Make your move\n").upper()
+    print(player.items)
+    if play_input == 'N' or play_input == 'S' or play_input == 'E' or play_input == 'W':
+        player.walk(play_input.lower())
+    elif play_input.lower() == "grab":
+        print("you said grab?!?!?!?!")
+        player.get_item()
+    elif play_input.lower() == "drop":
+        print("..dropping..")
+        player.drop_item()
+    elif play_input == "Q":
+        print(f'Safe travels, {player.name}! May you have long days and pleasant nights.\n')
+        break

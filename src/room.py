@@ -3,21 +3,14 @@
 
 
 class Room:
-    def __init__(self, name, description):
+    def __init__(self, name, description, items=[]):
         self.name = name
         self.description = description
+        self.items = items
+        self.n_to = None
+        self.s_to = None
+        self.e_to = None
+        self.w_to = None
 
-    def room_function(self):
-        print(self.name, self.description)
-
-
-class Direction(Room):
-    def __init__(self, n_to, s_to, e_to, w_to, name, description):
-        super().__init__(name, description)
-        self.n_to = n_to
-        self.s_to = s_to
-        self.e_to = e_to
-        self.w_to = w_to
-
-    def direction_function(self):
-        print(self.n_to, self.s_to, self.e_to, self.w_to)
+    def __str__(self):
+        return f"{self.name} {self.description}"

@@ -1,3 +1,4 @@
+from src.items import Items
 from src.room import Room
 
 # Declare all the rooms
@@ -22,6 +23,18 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+item = {
+    'pancake':  Items("A golden fluffy pancake",
+                     "On a plate, lays a singluar, hot, fluffy pancake, kissed with a drizzle of syrup."),
+    'hammer':    Items("Hammer", """Old rusted hammer made of rune"""),
+    'fork': Items("Plastic Fork", """Perfect for eating a pancake with"""),
+    'pancakes':   Items("Stack of pancakes", """Folded into a napkin, you find a stack of 5 steaming hot, fluffy 
+    pancakes, drizzled with pure maple syrup. Upon biting into it, you realize the center is full of raw batter."""),
+    'treasure': Items("Treasure Chest", """You've found the long-lost treasure
+chamber! Sadly, it has already been completely emptied by
+earlier adventurers. The only exit is to press Q... or head south"""),
+}
+
 
 # Link rooms together
 
@@ -40,13 +53,15 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 print()
-print("********* WELCOME TO YOUR PRINCESS ADVENTURE GAME *********")
-p_name = input("To get started, give your princess a name >>> ")
+print("********* WELCOME TO MY GAME THAT NEEDS A MORE CREATIVE TITLE *********")
+p_name = input("To get started, give your character a name >>> ")
 player = Player(p_name, room["outside"])
-print(f"Make sure to look around, you may quit the game at any time by typing 'Q' and Good Luck {player.name}!")
+print("You find yourself lost in the jungle. You don't remember how you got there, but you are there alone.\n You see "
+      "off in the distance, a dungeon styled building.")
+print(f"Make sure to look around, you may quit the game at any time by typing 'Q'. Oh, and Good Luck {player.name}!")
 print()
-print(f"{player.name} is currently {player.current_room.name}. {player.current_room.description}")
-print(f"Available items thrown across the ground:")
+print(f"{player.name} is currently {player.current_room.name}. {player.current_room.description}.")
+print(f"You spot items scattered all across the ground:")
 for i in room["outside"].items:
     print(f"\t{i}")
 
@@ -64,7 +79,9 @@ for i in room["outside"].items:
 
 instructional_text = """
 ******************** Available Move Options ******************
-**** { n } North | { s } South |  { w } West | { e } East ****
+**** { n } North | { s } South | { w } West | { e } East *****
+****************** {take} picks up an item *******************
+****************** {drop} puts the item down *****************
 ************** Enter [Q] to Exit the Adventure ***************
 """
 
@@ -75,11 +92,11 @@ while play_input != "Q":
     print(player.items)
     if play_input == 'N' or play_input == 'S' or play_input == 'E' or play_input == 'W':
         player.walk(play_input.lower())
-    elif play_input.lower() == "grab":
-        print("you said grab?!?!?!?!")
+    elif play_input.lower() == "take":
+        print("For why do you wish to steal???????")
         player.get_item()
     elif play_input.lower() == "drop":
-        print("..dropping..")
+        print("You have dropped your item, ruining it for ")
         player.drop_item()
     elif play_input == "Q":
         print(f'Safe travels, {player.name}! May you have long days and pleasant nights.\n')

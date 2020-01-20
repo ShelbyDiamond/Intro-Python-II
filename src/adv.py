@@ -24,15 +24,14 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 item = {
-    'pancake':  Items("A golden fluffy pancake",
-                     "On a plate, lays a singluar, hot, fluffy pancake, kissed with a drizzle of syrup."),
+    'pancake':  Items("A golden fluffy pancake", """On a plate, lays a singluar, hot, fluffy pancake, kissed with a 
+    drizzle of syrup."""),
     'hammer':    Items("Hammer", """Old rusted hammer made of rune"""),
     'fork': Items("Plastic Fork", """Perfect for eating a pancake with"""),
     'pancakes':   Items("Stack of pancakes", """Folded into a napkin, you find a stack of 5 steaming hot, fluffy 
     pancakes, drizzled with pure maple syrup. Upon biting into it, you realize the center is full of raw batter."""),
-    'treasure': Items("Treasure Chest", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to press Q... or head south"""),
+    'treasure': Items("Treasure Chest", """You've found the long-lost treasure chamber! Sadly, it has already been 
+    completely emptied by earlier adventurers. The only exit is to press Q... or head south"""),
 }
 
 
@@ -47,23 +46,25 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 print()
-print("********* WELCOME TO MY GAME THAT NEEDS A MORE CREATIVE TITLE *********")
+print("********* WELCOME TO THE JUNGLE *********")
 p_name = input("To get started, give your character a name >>> ")
 player = Player(p_name, room["outside"])
-print("You find yourself lost in the jungle. You don't remember how you got there, but you are there alone.\n You see "
-      "off in the distance, a dungeon styled building.")
-print(f"Make sure to look around, you may quit the game at any time by typing 'Q'. Oh, and Good Luck {player.name}!")
+print("You find yourself lost in the jungle. You don't remember how you got there, but you are there alone.\nYou see "
+      "off in the distance, a cave and a faded treasure map too faded to read.\nMake sure to look around, "
+      "you may quit the game at any time by typing 'Q'.")
+print(f"Oh, and good luck on your treasure hunt {player.name}!")
 print()
 print(f"{player.name} is currently {player.current_room.name}. {player.current_room.description}.")
 print(f"You spot items scattered all across the ground:")
-for i in room["outside"].items:
-    print(f"\t{i}")
+#for i in room[player.current_room].items:
+#    print(f"\t{i}")
 
 
 # Write a loop that:

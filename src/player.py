@@ -19,20 +19,21 @@ class Player:
             print(f"Available items scattered across the ground:")
             # printing multiple items nicely
             for i in self.current_room.items:
-                print(f"\t{i}")
+                print(i)
         # if no path available show this message
         else:
             print(f"\nThere appears to be a wall in the way! TRY AGAIN\n")
 
     # get_item grabs items from the current room
-    def get_item(self):
+    def get_item(self, item):
         if len(self.current_room.items) > 0:
-            x = self.current_room.items.pop()
-            self.items.append(x)
-            print(self.items)
+#            x = self.current_room.items.pop()
+            self.items.append(item)
+            for i in self.items:
+                print(i)
         # else show this message
-        else:
-            print("\nThere are no items left here, and you've doomed the universe. Way to go.\n")
+ #       else:
+ #           print("\nThere are no items left here, and you've doomed the universe. Way to go.\n")
 
     # drop_item drops the players list items
     def drop_item(self):

@@ -15,3 +15,6 @@ class Room:
 
     def __str__(self):
         return f"{self.name} {self.description}"
+
+    def add_items(self, item):
+        self.items.append(item)

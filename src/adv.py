@@ -23,8 +23,8 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-item = {
-    'pancake':  Items("A golden fluffy pancake", """On a plate, lays a singluar, hot, fluffy pancake, kissed with a 
+items = {
+    'pancake':  Items("A golden fluffy pancake", """On a plate, lays a singular, hot, fluffy pancake, kissed with a 
     drizzle of syrup."""),
     'hammer':    Items("Hammer", """Old rusted hammer made of rune"""),
     'fork': Items("Plastic Fork", """Perfect for eating a pancake with"""),
@@ -46,7 +46,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-
+room['foyer'].add_items(items["fork"])
 #
 # Main
 #
@@ -63,8 +63,8 @@ print(f"Oh, and good luck on your treasure hunt {player.name}!")
 print()
 print(f"{player.name} is currently {player.current_room.name}. {player.current_room.description}.")
 print(f"You spot items scattered all across the ground:")
-#for i in room[player.current_room].items:
-#    print(f"\t{i}")
+# for i in room[player.current_room].items:
+#   print(i)
 
 
 # Write a loop that:
@@ -90,12 +90,12 @@ print(instructional_text)
 play_input = ""
 while play_input != "Q":
     play_input = input("Make your move\n").upper()
-    print(player.items)
+#    print(player.items)
     if play_input == 'N' or play_input == 'S' or play_input == 'E' or play_input == 'W':
         player.walk(play_input.lower())
     elif play_input.lower() == "take":
         print("For why do you wish to steal???????")
-        player.get_item()
+        player.get_item(items["fork"])
     elif play_input.lower() == "drop":
         print("You have dropped your item, ruining it for ")
         player.drop_item()
